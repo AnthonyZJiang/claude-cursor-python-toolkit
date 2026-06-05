@@ -2,10 +2,6 @@
 
 My AI coding setup for Python development — tuned for developing hardware SDKs, protocol clients, and libraries. Works with [Cursor](https://cursor.com) and [Claude Code](https://code.claude.com).
 
-
-- **`.cursor/`** — Cursor-native source of truth (`.mdc` rules, skills, agents)
-- **`.claude/`** — Claude Code translation (`.md` rules with `paths`, same skills/agents)
-
 ## What's included
 
 - **Rules** — always-on or file-scoped coding standards (style, tests, project layout, venv usage)
@@ -48,6 +44,7 @@ my-sdk/
 ├── src/
 ├── tests/
 ├── docs/
+├── pyproject.toml
 ```
 
 ## Philosophy
