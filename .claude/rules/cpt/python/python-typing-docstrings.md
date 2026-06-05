@@ -1,0 +1,10 @@
+---
+description: Write codes with docstrings and typing.
+paths:
+  - "**/*.py"
+---
+- For any python file, be sure to ALWAYS add typing annotations to each function or class. Be sure to include return types when necessary.
+- Add descriptive docstrings to all python functions and classes, as well as any parameters, returns and exceptions.
+- Use pep257 convention.
+- Update existing docstrings as needed.
+- Make sure you keep any comments that exist in a file.

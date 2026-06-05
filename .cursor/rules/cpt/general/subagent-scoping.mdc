@@ -1,0 +1,14 @@
+---
+description: When spawning test-runner, test-robustness-reviewer, or verifier, pass explicit per-round scope; subagents lack chat history.
+alwaysApply: true
+---
+
+# Subagent scoping
+
+Before invoking `test-runner`, `test-robustness-reviewer`, or `verifier`:
+
+1. Read and follow the **subagent-scoping** skill.
+2. Pass **this round only**: changed files, test names, and what was already reviewed.
+3. Do not rely on `git diff` alone across uncommitted multi-round work.
+
+Subagents must honor parent-provided scope over cumulative uncommitted diffs.
