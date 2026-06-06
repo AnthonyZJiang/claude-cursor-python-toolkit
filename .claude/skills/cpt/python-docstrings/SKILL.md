@@ -1,6 +1,6 @@
 ---
 name: python-docstrings
-description: Write PEP-257 and Google-style Python docstrings for public APIs, with reST cross-links and admonitions suitable for HTML doc generation. Use when adding or updating docstrings, documenting modules/classes/functions, or when the user mentions docstrings or API documentation.
+description: Write PEP-257 and Google-style Python docstrings for public APIs. Use when adding or updating docstrings, documenting modules/classes/functions, or when the user mentions docstrings or API documentation.
 ---
 
 # Python Docstrings

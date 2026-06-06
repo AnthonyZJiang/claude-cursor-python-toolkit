@@ -1,9 +1,6 @@
 ---
 name: subagent-scoping
-description: >-
-  Scope and invoke test-runner, test-robustness-reviewer, and verifier across
-  multi-round uncommitted work. Use when spawning subagents, after a TDD slice,
-  when tests change, or when the user iterates without committing between rounds.
+description: Scope and invoke test-runner, test-robustness-reviewer, and verifier across multi-round uncommitted work. Use when spawning subagents, after a TDD slice, when tests change, or when the user iterates without committing between rounds.
 ---
 
 # Subagent scoping across rounds
