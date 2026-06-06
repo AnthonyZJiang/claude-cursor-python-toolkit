@@ -5,10 +5,12 @@ description: Test-driven development with red-green-refactor loop. Use when user
 
 # Test-Driven Development
 
-## Language Setup
+## Python test skills
 
-[python/tests.md](python/tests.md)
-[python/mocking.md](python/mocking.md)
+When writing Python tests, read and follow:
+
+- **python-tests** — pytest conventions, good/bad test patterns, HTTP endpoint tests
+- **python-test-mocking** — when and how to mock at system boundaries
 
 ## Philosophy
 
@@ -18,7 +20,7 @@ description: Test-driven development with red-green-refactor loop. Use when user
 
 **Bad tests** are coupled to implementation. They mock internal collaborators, test private methods, or verify through external means (like querying a database directly instead of using the interface). The warning sign: your test breaks when you refactor, but behavior hasn't changed. If you rename an internal function and tests fail, those tests were testing implementation, not behavior.
 
-See [tests.md](python/tests.md) for examples and [mocking.md](python/mocking.md) for mocking guidelines.
+See **python-tests** for examples and **python-test-mocking** for mocking guidelines.
 
 ## Anti-Pattern: Horizontal Slices
 

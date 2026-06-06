@@ -8,8 +8,4 @@ alwaysApply: false
 
 When adding imports in new Python code, prefer relative imports when the target module is inside the same package.
 
-- Same directory: `from .module import X`
-- Subpackage: `from .subpackage.module import X`
-- Parent package: `from ..module import X`
-
 Use absolute imports when importing from outside the current package tree (e.g. stdlib, third-party, or a different top-level package).

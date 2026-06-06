@@ -20,7 +20,7 @@ After each round of work, note:
 - **Round N changed files** — production + tests
 - **Round N new/changed tests** — `file::test_name`
 - **Already reviewed** — files/tests cleared in prior subagent runs
-- **Shared layers touched?** — e.g. `conftest.py`, `encoding.py`, `vfbus/`
+- **Shared layers touched?**
 
 ## When to invoke subagents
 
@@ -28,7 +28,7 @@ After each round of work, note:
 |-------|--------|
 | Single TDD slice (1 test + impl) | Parent runs targeted `pytest` inline — no subagent |
 | Batch of new device/client tests | `test-robustness-reviewer` with narrow scope |
-| `conftest` or shared transport changed | `test-robustness-reviewer` + broader `test-runner` |
+| shared transport changed | `test-robustness-reviewer` + broader `test-runner` |
 | Failure diagnosis stuck | `test-runner` |
 | User says "done" / milestone | Full `test-runner` → `test-robustness-reviewer` (full new area) → `verifier` |
 
@@ -60,13 +60,12 @@ If scope is omitted, subagents must ask for it or use only the paths listed unde
 |--------|-----|
 | One new test | That test |
 | One test file | That file |
-| New device package | `tests/devices/<device>/` |
 | Shared layer | Full suite |
 
 ## Milestone commits (optional)
 
 Commits are not required every round. Without them, cumulative `git diff` grows.
-Suggest a milestone commit when a vertical slice is complete (e.g. register map done).
+Suggest a milestone commit when a vertical slice is complete.
 
 ## Parent obligations
 

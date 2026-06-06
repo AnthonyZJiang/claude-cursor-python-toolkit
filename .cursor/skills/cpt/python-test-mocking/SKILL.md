@@ -1,4 +1,14 @@
-# When to Mock
+---
+name: python-test-mocking
+description: >-
+  Mock at system boundaries in Python tests using pytest-mock, unittest.mock,
+  AsyncMock, and respx. Use when mocking external APIs, databases, time, HTTP
+  calls, or when the user asks about test doubles, patching, or mockability.
+---
+
+# Python Test Mocking
+
+## When to Mock
 
 Mock at **system boundaries** only:
 

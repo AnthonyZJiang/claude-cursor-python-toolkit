@@ -6,7 +6,6 @@ paths:
 - Always use classes instead of function
 - 4 spaces indentation, no tabs
 - No hardcoded secrets — use pydantic-settings
-- structlog for logging — never print()
 - Never bare `except:` — catch specific exceptions
 - Never use mutable default arguments
 - Prefer `X | None` over `Optional[X]`

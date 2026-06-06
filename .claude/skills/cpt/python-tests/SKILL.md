@@ -1,6 +1,16 @@
-# Good and Bad Tests
+---
+name: python-tests
+description: >-
+  Write Python tests with pytest, factory_boy, and integration-style practices.
+  Use when writing or reviewing tests, adding test coverage, testing HTTP
+  endpoints, or when the user mentions pytest, test structure, or good/bad test
+  patterns.
+---
+
+# Python Tests
 
 ## General rules
+
 - pytest + factory_boy + pytest-asyncio, do NOT use the unittest module
 - For HTTP endpoint tests use **httpx** + `TestClient` (FastAPI/Starlette) or the **pytest-django** test client.
 - asyncio_mode = "auto"

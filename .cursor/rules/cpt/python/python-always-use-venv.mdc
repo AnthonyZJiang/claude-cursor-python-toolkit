@@ -1,0 +1,10 @@
+---
+description: Always use the project virtualenv interpreter; never global Python unless the user asks.
+alwaysApply: true
+---
+
+# Always use Python Virtual Environment
+
+- Always use the project virtualenv interpreter. Never use system `python`, pyenv shims, or other global interpreters unless the user explicitly asks.
+- Resolve: `<workspace-root>/.venv/bin/python` (then `<current-project-dir>/.venv/bin/python` if different). Use absolute paths.
+- If no `.venv` exists, read and follow the **python-venv-bootstrap** skill before creating one.

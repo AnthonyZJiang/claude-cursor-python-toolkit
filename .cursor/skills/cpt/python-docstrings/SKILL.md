@@ -1,11 +1,11 @@
 ---
 name: python-docstrings
-description: Write PEP-257 and Google-style Python docstrings optimized for pdoc HTML generation. Use when adding or updating docstrings, documenting public APIs, preparing packages for pdoc, or when the user mentions docstrings, API docs, or pdoc.
+description: Write PEP-257 and Google-style Python docstrings for public APIs, with reST cross-links and admonitions suitable for HTML doc generation. Use when adding or updating docstrings, documenting modules/classes/functions, or when the user mentions docstrings or API documentation.
 ---
 
-# Python Docstrings (pdoc-ready)
+# Python Docstrings
 
-Write docstrings that render cleanly with [pdoc3](https://pdoc3.github.io/pdoc/doc/pdoc). Follow PEP-257 placement rules and **Google-style** section headers (`Args`, `Returns`, `Raises`). This matches the existing codebase and is one of pdoc's supported formats (along with Markdown and numpydoc — do not mix formats in one docstring).
+Follow PEP-257 placement rules and **Google-style** section headers. Do not use numpydoc or Sphinx-only sections.
 
 ## When docstrings are required
 
@@ -19,7 +19,7 @@ Document every **public** symbol that is part of the library API:
 | Public function / method | Yes | Include `Args` / `Returns` / `Raises` when applicable |
 | Public property | Yes | Treat like a method |
 | Public module/class/instance variable | Yes, when non-obvious | Use `#:` or PEP-224 (see below) |
-| Private (`_name`) | No | Omit unless whitelisted via `__pdoc__` |
+| Private (`_name`) | No | Omit unless intentionally documented |
 | Tests | Optional | Brief module/class docstring is enough; test bodies need not be documented |
 
 **Public** means: defined in the module (not merely imported), name does not start with `_`, and (if `__all__` exists) name is listed in `__all__`.
@@ -69,12 +69,12 @@ def fetch_items(
 
 1. **Opening summary** — Imperative mood for functions/methods (`Read …`, `Return …`). Noun phrase for classes (`Client for …`). Blank line before sections.
 2. **Types in signatures, not docstrings** — Rely on PEP 484 annotations. Describe semantics in `Args`/`Returns`, not `arg (int):`.
-3. **Section headers** — Use `Args`, `Returns`, `Raises`, `Attributes`, `Examples`. pdoc also accepts aliases (`Parameters` → `Args`).
+3. **Section headers** — Use `Args`, `Returns`, `Raises`, `Yields`, `Attributes`, `Examples`.
 4. **Omit empty sections** — No `Returns:` for `-> None` unless the absence is surprising.
 5. **Code in docstrings** — Wrap literals and identifiers in double backticks: `` ``"localhost"`` ``, `` `Item` ``.
-6. **Cross-references** — Use pdoc/reST syntax for same-module links: `` :meth:`connect` ``, `` :class:`Example` ``. For other modules, use fully qualified names in backticks: `` `mypackage.module.Example` ``.
-7. **Markdown in prose** — pdoc renders Markdown in docstrings (lists, bold, code fences). Use sparingly in API reference text.
-8. **reST directives** — Supported when needed: `.. note::`, `.. warning::`, `.. deprecated::`, `.. versionadded::`, `.. include::` (see [reference.md](reference.md)).
+6. **Cross-references** — Same module: reST roles `` :meth:`connect` ``, `` :class:`Example` ``, or backticks `` `read_registers` ``. Other modules: fully qualified names in backticks: `` `mypackage.module.Example` ``.
+7. **Markdown in prose** — Lists, bold, and code fences render in HTML output. Use sparingly in API reference text.
+8. **reST directives** — For caveats and versioning: `.. note::`, `.. warning::`, `.. deprecated::`, `.. versionadded::`. See [examples.md](examples.md).
 
 ### Classes
 
@@ -91,11 +91,11 @@ Document `__init__` parameters in `__init__`'s docstring, not the class docstrin
 """Public API for the example module."""
 ```
 
-First line is the module summary pdoc shows on the package index.
+The first line is the module summary shown in package indexes.
 
-### Variables (pdoc-specific)
+### Variables
 
-pdoc reads variable docs from source AST. Prefer `#:` comments; PEP-224 trailing strings take precedence.
+Document non-obvious public constants and attributes with `#:` comments or PEP-224 trailing strings (trailing strings take precedence when both are present).
 
 ```python
 DEFAULT_TIMEOUT_S = 30.0
@@ -114,37 +114,17 @@ Document **public** module-level constants and class attributes users must under
 
 ### Subclass overrides
 
-pdoc inherits superclass method docstrings when a subclass omits its own. Override only when behavior differs; do not copy-paste parent docs.
-
-### Special cases (`__pdoc__`)
-
-When a docstring cannot be attached (e.g. `namedtuple` fields), override at module or class scope:
-
-```python
-__pdoc__: dict[str, bool | str] = {}
-__pdoc__["Table.rows"] = "Lists corresponding to each row in the table."
-__pdoc__["_internal_helper"] = False  # hide from docs
-```
+Override a superclass docstring only when behavior differs; do not copy-paste parent docs.
 
 ## Checklist before finishing
 
 - [ ] Every new public module, class, function, and method has a docstring, unless excepted
 - [ ] Google sections present where parameters, returns, or exceptions exist
 - [ ] Types live in annotations, not duplicated in `Args`
-- [ ] Cross-module references use fully qualified backtick names
-- [ ] No docstrings on `_private` symbols (unless intentionally exposed)
+- [ ] Same-module links use reST roles or backticks; cross-module links use fully qualified backtick names
+- [ ] No docstrings on `_private` symbols (unless intentionally documented)
 - [ ] Docstrings updated when signatures or behavior change
-
-## Verify with pdoc
-
-```bash
-pdoc --http : my_package          # live preview while writing
-pdoc --html --output-dir build my_package
-```
-
-Set `PYTHONWARNINGS='error::UserWarning'` in CI to catch broken cross-reference links.
 
 ## Additional resources
 
-- pdoc behavior (public API rules, inheritance, `__pdoc__`): [reference.md](reference.md)
-- Generic worked examples: [examples.md](examples.md)
+- Specialized patterns, reST directives, and anti-patterns: [examples.md](examples.md)
