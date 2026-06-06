@@ -1,10 +1,6 @@
 ---
 name: python-venv-bootstrap
-description: >-
-  Bootstrap or recreate Python virtual environments with pyenv, pymanager, or
-  plain python3. Use when .venv is missing, the user asks to set up Python,
-  create a venv, or install project dependencies from requirements.txt or
-  pyproject.toml.
+description: Bootstrap or recreate Python virtual environments with pyenv, pymanager, or plain python3. Use when .venv is missing, the user asks to set up Python, create a venv, or install project dependencies from requirements.txt or pyproject.toml.
 ---
 
 # Python Virtual Environment Bootstrap
