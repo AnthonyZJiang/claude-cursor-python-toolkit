@@ -1,8 +1,0 @@
----
-description: Write codes with docstrings and typing.
-paths:
-  - "**/*.py"
----
-- For any python file, be sure to ALWAYS add typing annotations to each function or class.
-- Follow PEP-257 placement rules and **Google-style** section headers (`Args`, `Returns`, `Raises`).
-- Make sure you keep any comments that exist in a file.

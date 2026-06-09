@@ -37,6 +37,8 @@ TARGET="$(cd "$TARGET" && pwd)"
 CLAUDE_SRC="${TOOLKIT_DIR}/.claude"
 CLAUDE_DEST="${TARGET}/.claude"
 
+"${TOOLKIT_DIR}/sync-claude.sh"
+
 install_cpt() {
   local category="$1"
   local src="${CLAUDE_SRC}/${category}/cpt"
